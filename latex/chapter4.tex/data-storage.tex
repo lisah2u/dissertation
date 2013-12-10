@@ -1,0 +1,46 @@
+%% LyX 2.0.6 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+%\documentclass[english]{article}
+%\usepackage[T1]{fontenc}
+%\usepackage[latin9]{inputenc}
+
+%\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+%\providecommand{\tabularnewline}{\\}
+
+%\makeatother
+
+%\usepackage{babel}
+%\begin{document}
+
+%\begin{table}
+%\caption[Lorem ipsum dolor.]{Lorem ipsum dolor sit amet.}
+%\centering
+%\begin{tabular}{cc}
+%\toprule
+%$p$ & $\lnot p$ \\ 
+%\midrule
+%V   & F \\ 
+%F   & V \\
+%\bottomrule 
+%\end{tabular}
+%\end{table}
+
+\begin{table}
+\label{data-storage}
+\caption[Data Captured]{Data Captured}
+\centering
+\begin{tabular}{cp{7cm}}
+\toprule
+Stored & Type of Data\tabularnewline
+\hline 
+Amazon Server \medskip{} & WorkerId, AssignmentId, HitId, Accept / Reject, Fees paid\tabularnewline
+Qualtrics Server \medskip{}
+ & Random number identifier, Experiment data\tabularnewline
+FireBase Server\medskip{}
+ & Hash of workerIds for each experiment\tabularnewline
+\end{tabular}
+\end{table}
+%\end{document}

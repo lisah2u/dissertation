@@ -1,0 +1,46 @@
+
+\chapter{Sample AMT Assignment Definition}
+\label{assignment}
+\lstset{numbers=none}
+\begin{lstlisting}
+title = Language study and demographic survey (3 min)
+description: one task and then just a survey
+keywords:survey, language
+
+# how much you'll pay each subject
+reward:.15
+
+# how many subjects do you want
+assignments:30
+
+######################################
+## HIT Timing Properties
+######################################
+
+# 60*10, 10 mins to finish a suvey
+assignmentduration:600
+
+# 60*60*24*2, 2 day to keep on mturk
+hitlifetime:172800
+
+# 10 seconds to auto approve the response
+# 
+autoapprovaldelay:10
+
+######################################
+## Qualification Properties
+######################################
+
+# user must have an approval rate of 90% or greater
+qualification.1:000000000000000000L0
+qualification.comparator.1:greaterthan
+qualification.value.1:90
+qualification.private.1:false
+
+# user must be in the United States
+qualification.2:00000000000000000071
+qualification.comparator.2:equalto
+qualification.locale.2:US
+qualification.private.2:true
+\end{lstlisting}
+

@@ -1,0 +1,521 @@
+\chapter{Study One: Modal Dialog Boxes}
+\label{studyone:modaldialogboxes}
+
+This study concerns whether people make pragmatic inferences when interacting with user interface components. Elements of language and iconic graphics integrate to communicate what seems a simple message. So simple, users may not even be aware of potential errors in communication.
+
+\section{Motivation: Privacy as User Choice}
+\label{motivation:privacyasuserchoice}
+
+The W3C Tracking Protection Working Group (TPWG) has been working toward a ``Do Not Track'' (DNT) policy intended to allow users to signal their intent with regard to browser-based tracking. DNT is not designed as a general purpose tool for communicating privacy practices. It is intended to simply communicate a user's preference not to be tracked. 
+
+The current Tracking Preference Expression draft specifies three possible states: DNT:1 (do not track), DNT:0 (allow tracking) and un-set. In this third case, tracking preference is not enabled. The TPWG draft posits a number of reasons for why a user agent may not have tracking preference enabled:
+ 
+\begin{enumerate}
+\item The browser user agent does not implement DNT;
+\item The user has not yet expressed a specific preference; or,
+\item The user has not chosen to transmit a preference.
+\end{enumerate}
+
+User preference mechanisms specified by the TPWG represent an earnest attempt to place some burden of policy implementation on browser developers rather than publishers: instead of forcing the user to make a choice for every website, the idea is that a user specifies choice in browser preferences and sets exceptions as desired. Nonetheless, some websites offer a tracking preference choice in order to comply with other international regulations, such as the EU cookie law described in Chapter 2.
+
+\section{Choice Design Problem}
+\label{choicedesignproblem}
+
+Though the TPWG intent is to provide a machine readable preference expression mechanism and not a user interface (UI) specification, the three options above map to common UI pattern: \textbf{modeless dialog control}. 
+
+Given this, if a user is presented with a dialog control presenting a choice between opt-in, opt-out and dismiss, what does the user believe is the consequence of choosing to dismiss?
+
+One way to consider this problem is as a choice design problem (\autoref{cookieguard}):
+\begin{enumerate}
+\item If I click "allow",  I choose "allow" cookies
+\item If I click "block", I choose "block" cookies
+\item I can do neither ("dismiss")
+\end{enumerate}
+
+\begin{figure}
+\begin{center}
+ \includegraphics[scale=.25]{chapter5.tex/cookieguard}
+\caption{Cookie dialog control from cookieguard.eu}
+\label{cookieguard}
+\end{center}
+\end{figure}
+
+Fair and unbiased choice design is a tricky problem. Default choices have a dramatic impact on user action  \citep{Johnson:2002vb}.  \emph{Heuristics and biases} theories of reasoning account for a number of different situations leading to systematic bias. Biases including loss aversion (e.g., change from status quo), framing, and evaluation of options in relation to reference points (e.g., expectation and social comparison) have been well-described by  \cite{Tversky:1981vc} and \cite{Kahneman:1984td}. 
+
+Whether intentional or not, designers -- both standards architects and web designers -- have tremendous potential to influence choice  \citep{Thaler:2010uy}.  
+
+\section{Forced Choice}
+\label{forcedchoice}
+
+Given that users may not understand the consequences of not making a DNT choice, one might ask why the TPWG might not specify ``forced choice.'' That is, why not force the user to make a choice? 
+
+As described by  \citet{Dhar:2003vb},  forced choice under preference uncertainty can produce psychological discomfort  \citep[referencing work by][]{Festinger:1964ub,Lewin:1951uj,Janis:1977vx}.  They note that the no-choice alternative is an attractive way of resolving difficult choices when subjects are forced to choose. 
+
+The study described here concerns whether users confronted with a non-forced choice dialog box understand the meaning of their choices in the context of interaction. The next section will cover related research, focusing largely on meaning and understanding.
+
+\section{Related Research}
+\label{relatedresearch}
+
+Prior privacy research in the context of online behavioral advertising has focused on the effectiveness of communicating privacy risks to consumers  \citep{McDonald:2009td},  and confusability in user interface design  \citep{Leon:2012vu}.  Moreover, research on ``opt-in'' \slash  ``opt-out'' in the context of privacy-related decision-making has also been studied  \citep{Bellman:2001vq,Lai:2006ws}.  This body work is summarized below.
+
+\subsection{Heuristics and Biases}
+\label{heuristicsandbiases}
+
+ \citet{Bellman:2001vq}  systematically studied the influence of question framing and defaults on consumer privacy preferences. They remarked that the decision to share private information on a site is typically on a case-by-case basis. This is particularly problematic in light of research by  \citep{Kahneman:1984td}.  who found that user behavior was susceptible to several important factors, namely the framing of options. In other words, people tend to evaluate options in relation to how a question is asked. What  \citeauthor{Bellman:2001vq}  discovered in the context of privacy preference was that framing the question as opt-out instead of opt-in affected choice. 
+
+In  \autoref{defaults},  from  \cite{Bellman:2001vq},  134 participants were given either the first question or the second --- which are framed positively and negatively, respectively. By making opt-in the default, 96.3\% agreed to participate, while when not the default, only about half agreed to participate.
+
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.5]{chapter5.tex/default2}
+  }
+\caption{Effect of Defaults on Participation (Image credit: \cite{Bellman:2001vq}}
+\label{defaults}
+\end{figure}
+
+\begin{sloppier}
+Equally interesting is that positive (e.g., "notify me about...") versus negative (e.g., "do not notify me about...") framing has an effect on participation rates. In the same task as above, but in a forced choice question format, respondents agreed to participate at a higher rate in a positive frame compared to a negative \citep{Bellman:2001vq}.
+\end{sloppier}
+
+
+As they further note,
+
+\begin{quote}
+Defaults and framing are likely to have even more impact when, as is often the case, the question is set in a miniature font, or answering most questions is optional, or the implications of answering are buried in a large privacy policy document. \citep[p. 25]{Bellman:2001vq}
+\end{quote}
+
+ \citet{Lai:2006ws}  extended this work by investigating the role of ``privacy concern'' on option frames. They found that that the mechanism described by  \citet{Bellman:2001vq}  had a greater effect in people who were less concerned with privacy than those who were more concerned with privacy. Thus, those with greater privacy sensitivity appeared to be less susceptible to option frames.
+
+To date, ``opt-in'' versus ``opt-out'' in the context of dialog interaction has not been studied. However, there has been some relevant research on interaction with modal dialog, in general. In a study comparing techniques for user notification of information updates,  \citet*{Bailey:2000up}  find dialog windows to be the most most intrusive and distracting of methods compared.  \citet{Bailey:2006bp}  note that: ``when peripheral tasks interrupt the execution of primary tasks, users require from 3\% to 27\% more time to complete the tasks, commit twice the number of errors across tasks, experience from 31\% to 106\% more annoyance, and experience twice the increase in anxiety than when those same peripheral tasks are presented at the boundary between primary tasks.'' This work is particularly relevant from the perspective that people have a choice to even attend a dialog upon visiting a website.
+
+\subsection{Pragmatic Reasoning}
+\label{pragmaticreasoning}
+
+Pragmatics is concerned with reasoning processes that go beyond conventional meaning. It is founded on the notion that communication is essentially cooperative  \citep{Grice:1975vz,Levinson:1983ww,Clark:1996tm}. 
+A common pragmatic phenomenon in linguistic understanding is implicature. An implicature represents a gap between what is expressed and what is communicated. Importantly, whether an implicature is true or not, does not affect the meaning of the message itself. For example,
+
+\begin{enumerate}
+\item Harry and Sally are married.
+\item Tell a friend or colleague.
+\item If you mow the lawn, I'll give you five dollars. 
+
+\end{enumerate}
+
+In (1) the implication is that Harry and Sally are married to each other. But, if they were not, and both married to someone else, this statement would still true. (2) exemplifies implicature derived by considering ``or'' as inclusive or exclusive. (3) typifies what is known as \emph{invited inference}  \citep{Geis:1971vb}  or \emph{conditional promise} \citep{Searle:1971vx}.  In (3), hearers understand the conditional relation between getting five dollars and mowing. But they may also infer ``not to mow'' means they will ``not get five dollars.'' 
+
+ \cite{Fillenbaum:1975tr}  showed that the obverse of a conditional promise (in the example above, ``I won't give you five dollars, if you don't mow the lawn'') was an accepted inference for 85\% of subjects tested. Invited inference in a conditional statement affects people's understanding of a situation. Such inferences contain what is known as ``deontic force''.
+
+\subsection{Deontic Reasoning and Knowledge}
+\label{deonticreasoningandknowledge}
+
+Interestingly, arbitrary assertions such as:
+
+\begin{quote}
+If a fish is red, it has wings. \citep{Markovitz:1990pr}
+\end{quote}
+
+elicit far fewer bi-conditional interpretations (i.e., A fish has wings, if and only if it is red) than conditional promises. 
+
+What's different? Conditional promises such as the lawn mowing example above incur some sense of social obligation. Lexical items such as ``must'' and ``may'' do, as well.
+
+\begin{quote}
+You must finish your homework before you can go out to play.
+\end{quote}
+
+Obligation is somehow implicit in the word ``must'' and its meaning is licensed by context --- if this is a mother speaking to a child, than that mother is placing constraint on her child. 
+
+Likewise, a symbol may reflect social obligation. A stop sign is as explicit social rule and one we obey because of societal consequences. But there may also be contexts where such signs are ignored, for example, if the street is on an abandoned compound.
+
+The meaning of assertions containing concepts of permission, obligation, and prohibition, and release (from obligation) involve what is called \emph{deontic reasoning}  \citep{Beller:2008de}.  This sort of reasoning is concerned with the relation between pragmatic knowledge (i.e., knowledge of the content of arguments) and social obligation. 
+
+\subsection{Content Affects Reasoning}
+\label{contentaffectsreasoning}
+
+While the \emph{cooperative principle} (Grice, 1975) affects comprehension, knowledge of subject matter does, as well. If both the antecedent and consequent are closely correlated in the real world as in:
+
+\begin{quote}
+If I wear a jacket, then I put on a tie.
+\end{quote}
+
+ \citet{politzer1981differences}  found more bi-conditional interpretations for this sort of sentence than if they were not closely correlated.  \citet{marcus:1979co}  found the same for statements where the antecedent and consequent were causally related. \emph{In conditional reasoning tasks, subjects use knowledge of content to reason about the problem.}
+
+In the experiment described in this chapter, two confounding factors are considered: \emph{deontic force} and \emph{privacy bias}. The first is invoked through the use of word traditionally seen in cookie dialog boxes --- ``allow'' \slash  ``block''. As control, I substitute the words ``on'' \slash  ``off'' which carry not implied deontic force. The second confound is knowledge and attitude towards privacy and tracking cookies. I control this factor by substituting the words ``pictures'' for cookies.
+
+\subsection{Graphical Implicature}
+\label{graphicalimplicature}
+
+Visual context is known to influence language processing very early in the processing of language  \citep{Tanenhaus:1995tc}.  In eye-tracking tasks,  \citet{Tanenhaus:1995tc}  observed comprehension tasks on the millisecond time scale during language comprehension tasks. Initial experiments demonstrated that subjects made saccadic eye movements to objects immediately after hearing particular relevant words in instruction. Such movements are closely time-locked to linguistic objects.  \citet{Eberhard:1995fa}  found that listeners immediately integrate lexical, sub-lexical, and prosodic information in speech with information from visual context to reduce a set of referents to the intended one. 
+
+There is relatively little empirical research directed at graphical implicatures and mixed-modal representations, in particular.  \citet{Stenning:2006wu}  and  \citet{Stenning:1995ka}  posit that diagrammatic representations may be studied using the same kinds of semantic techniques used in linguistics.  \citet{Oberlander:1995vv}  discusses the notion of \emph{graphical implicature} in diagrams while  \citet{Marks:1990wh}  discuss methods for avoiding unwanted implicatures in generating text and graphics. 
+
+While this experiment aims to show whether pragmatic processes are in play, it makes no particular claim with regard to the processing of implicature; only that once a dialog box has been comprehended, this understanding has bearing on decision-making and belief. Furthermore, an implicature generated during understanding may not be remembered as such --- since people generally can't distinguish between assertions and implications in memory  \citep{Brewer:1977tl}  Indeed, it is likely that people are not even aware of any confusion or mis-understanding during or after comprehension.
+
+\section{Pre-Pilot}
+\label{pre-pilot}
+
+The purpose of this pre-pilot was to assess the feasibility of conducting a larger, online pilot study. Specific questions addressed were: 1) whether the dialog was placed in such a way that subjects would likely read it; and, 2) whether subjects would consider the dialog as independent of the experiment. I needed to be confident that users would not be influenced by the environment to select a particular choice. To this end, the study was posed as a ``survey''.
+
+\subsection{Method and Procedure}
+\label{methodandprocedure}
+
+In December 2012, 17 subjects were recruited at the University of Baltimore from university business offices. Employees and students were invited to participate in a ``10 minute survey'' in the Information Arts and Technologies usability lab in exchange for a \$5 dollar gift card. All were native English speakers who were comfortable using the Internet.
+
+Using a Tobii T60 eye-tracker, subjects were presented with a choice banner (``This website uses cookies'') preceding a short survey on Internet privacy. The choice banner was modified from the CookGuard plugin\footnote{ \url{http://cookieguard.eu} }  \autoref{cookieguard}  designed to help website owners comply with European Union directives. 
+
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.25]{chapter5.tex/cookieguard}
+  }
+\caption{CookieGuard Website}
+\label{cookieguard}
+\end{figure}
+
+
+A modification was made to include an ``x'' so that a third option -- ``if I click the x, I dismiss the control'' -- was explicit.
+
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.3]{chapter5.tex/pilot}
+  }
+\caption{User Display}
+\label{pilot}
+\end{figure}
+
+
+This banner was placed prominently on the start page of the Internet survey  \autoref{pilot}.  Generally, such banners are placed at the very top of a website, but I was concerned that subjects might not notice it there, so it was positioned it in such a way to make it more visually distinct.
+
+\subsection{Results and Discussion}
+\label{resultsanddiscussion}
+
+Of 17 subjects, 5 did not know what browser cookies were, 14 reported that privacy was very important to them, and 15 reported that they would turn off tracking if it were easy. Notably, only 1 subject selected any option other than ``dismiss'' on the cookie banner.\footnote{Interestingly, many subjects who dismissed the cookie banner without making a choice later indicated that privacy was very important to them.} He selected ``block'' cookies because ``he didn't like cookies.'' No one clicked the provided link ``learn more''.
+
+For the first goal of assessing likelihood that a subject would read the banner, I learned that, despite a sparsity of information on the start page, the first 9 subjects did not see the banner. For the remaining, subjects were verbally cued that there would be a cookie banner on the start page and that they could ``choose however they wanted.'' Indeed, all but one did then see and read the banner. 
+
+The second goal was more successful. When presented the banner, subjects reported that they did not suspect that the cookie banner had anything to do with the following survey.
+
+After presentation of the cookie banner and a number of demographic questions, subjects were asked whether they believed ad trackers were present on the site or not. 8 subjects believed that ad trackers were present while 9 did not. Of those that believed ad trackers were present, 1 subject believed that this was the case since he did not ``block'' cookies. Of the 9 that did not believe ad trackers were present, 6 believed this because they did not ``allow'' cookies. Accordingly, 7 of 17 (41\%) believed there either were or were not ad trackers on the site based on \emph{not} clicking ``allow'' or ``block'' cookies, respectively. These results suggest that a pragmatic implicature was in play --- information was suggested via the cookie banner though not explicitly stated. 
+
+\section{Aims}
+\label{aims}
+
+In this pilot, I consider whether a non-forced choice (modal) dialog box has the potential to generate an implicature in user understanding. One way to view the choice problem above is as a discourse reasoning task where more than one conditional is given for interpretation in a single turn. In the cookie dialog choice decision described in this paper, not only must subjects interpret the meaning of each conditional independently, but they must do so in the context of choice between an additional explicit conditional and graphical third choice (``dismiss''). The particular question addressed here is what a user believes his choice to mean when he neither selects ``allow'' nor ``block''. What do users believe is the meaning of the graphical third choice? 
+
+\section{Experimental Design}
+\label{experimentaldesign}
+
+This study has two experimental hypotheses:
+
+\begin{description}
+\item[Hypothesis 1A] \hfill \\ 
+A GUI dialog box, which communicate through a combination of linguistic elements and graphical elements, is subject to the communication of pragmatic implicature.
+\item[Hypothesis 1B] \hfill \\ 
+The interpretation of a pragmatic implicature in a GUI dialog influences user belief about the presence or absence of ad tracking cookies relative to the site they are viewing.
+\end{description}
+
+Experiment 1A is a 2x2x2 random control group posttest-only design. A control group is presented with a set of linguistic expressions and asked to answer questions about meaning. Treatment groups are presented with either linguistic expressions or a dialog box expressing the same set of choices and asked the same questions.
+
+The \textbf{independent variable} (IV) is ``presentation form'' (textual or mixed-modal) and the \textbf{dependent variable} (DV) is inference of a pragmatic implicature. 
+
+This is a factorial design considering not only modality but:
+
+\begin{enumerate}
+\item knowledge and attitude toward browser cookies (privacy bias); and,
+\item deontic force of the words "allow" and "block".
+\end{enumerate}
+
+Experiment 1B is a single factor random control group posttest-only design. Both control and treatment groups are presented with a cookie banner and later asked about whether or not they believe the website placed ``cookies'' in their browser. The treatment group is presented with a textual display that communicates the outcome of their action.
+
+The \textbf{independent variable} is ``feedback'' and the \textbf{dependent variable} is inference of a pragmatic implicature. 
+
+This design varies from the previous experiment since participants are asked not directly asked about the meaning of the dialog box, but about their beliefs about the presence or absence of cookies in their browser based on their previous behavior during an actual task. 
+
+\section{Method}
+\label{method}
+
+These two experimental designs follow the general procedure outlined in Chapter Four.
+
+\subsection{Experiment 1A Method}
+\label{experiment1amethod}
+
+\subsubsection{Settings and Participants}
+\label{settingsandparticipants}
+
+Using Amazon's Mechanical Turk, 213 workers were paid \$0.15 to participate in one of eight conditions of the 2x2x2 design previously described. Participants were assigned randomly via Qualtrics block randomizer. Results were collected during the period of 7--14 October 2014. The task was expected to take approximately three minutes, though workers were allowed up to 10 minutes to complete.
+
+\subsubsection{Procedure and Materials}
+\label{procedureandmaterials}
+
+The general procedure follows that described in Chapter Four.  \autoref{1A-flow}  is a more detailed graphical depiction of flow.
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.3]{chapter5.tex/1a-flow}
+  }
+\caption[scale=.5]{Experiment 1A Flow}
+\label{1A-flow}
+\end{figure}
+
+Following presentation of instructions and consent form, participants were each presented one question, as illustrated by  \autoref{textcpcookie} and \autoref{dialogcpcookie},  followed by survey questions. Each of eight variants are presented in  \autoref{exp1-conditions}  of this document. The cookie banner is the same as the one described in discussion of the pre-pilot earlier in this Chapter, though text was altered using PhotoShop to create variant conditions.
+
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.5]{chapter5.tex/textcpcookie}
+  }
+\caption{Textual, Deontic Force, Cookie Condition}
+\label{textcpcookie}
+\end{figure}
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.5]{chapter5.tex/dialogcpcookie}
+  }
+\caption{Mixed-Modal, Deontic Force, Cookie Condition}
+\label{dialogcpcookie}
+\end{figure}
+
+
+Answering either:
+
+\begin{itemize}
+\item The website will allow cookies because I didn't select block
+\item The website won't allow cookies because I didn't select allow
+\end{itemize}
+
+was considered evidence of pragmatic implicature. 
+
+\subsubsection{Instrumentation}
+\label{instrumentation}
+
+
+\begin{sloppier}
+In addition to features provided by AMT and Qualtrics, my scripts performed the following:
+
+\begin{enumerate}
+\item Disable preview using a custom CSS class blocking Qualtrics controls
+\item Check worker hash against a FireBase web service and request worker to return HIT if the hash is in the exclusion list
+\item Add worker hash to FireBase
+\item Submit results to AMT on completion of the Qualtrics survey
+\end{enumerate}
+\end{sloppier}
+
+
+No other instrumentation was required for this experimental design.
+
+\subsection{Experiment 1B Method}
+\label{experiment1bmethod}
+
+\subsubsection{Settings and Participants}
+\label{settingsandparticipants}
+
+Using Amazon's Mechanical Turk, 200 workers were paid \$0.15 to participate in one of two conditions of the single factor design previously described. Participants were assigned randomly via Qualtrics block randomizer. Results were collected between the days of 7--14 October 2013. The task was expected to take approximately three minutes, though workers were allowed up to 10 minutes to complete.
+
+\subsubsection{Procedure and Materials}
+\label{procedureandmaterials}
+
+The general procedure follows that described in Chapter Four.  \autoref{1B-flow}  is a more detailed graphical depiction of flow.
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.4]{chapter5.tex/1b-flow}
+  }
+\caption{Experiment 1B Flow}
+\label{1B-flow}
+\end{figure}
+
+Following presentation of instructions and consent form, participants were each presented a start screen with a cookie banner (appearance animated to draw attention), as illustrated in  \autoref{1B-start}. 
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.3]{chapter5.tex/1b-start}
+  }
+\caption{Experiment 1B Stimulus}
+\label{1B-start}
+\end{figure}
+
+Immediately following this, workers were presented with the following question:
+
+\begin{quote}
+Do you think there are ad trackers on this site?
+\end{quote}
+
+
+In the treatment condition ( \autoref{1B-feedback}),  participants were given feedback from their action on the previous screen.
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.4]{chapter5.tex/1b-feedback}
+  }
+\caption{Experiment 1B Question (with feedback)}
+\label{1B-feedback}
+\end{figure}
+
+They were then asked if they believed there were ad trackers on the site  (\autoref{1B-belief}).  Finally, participants were asked about their beliefs on the basis of this response  (\autoref{1B-justification}). 
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.5]{chapter5.tex/1b-no}
+  }
+\caption{Experiment 1B Cookie Belief}
+\label{1B-belief}
+\end{figure}
+
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.5]{chapter5.tex/1b-yes}
+  }
+\caption{Experiment 1B Belief Justification}
+\label{1B-justification}
+\end{figure}
+
+
+Responses were coded as implicature for the control group if the subject did nothing and responded with ``I chose allow'' \slash  ``I didn't choose allow'' (Yes) or ``I didn't choose block'' \slash  ``I chose block'' (No). In the treatment group ``I chose allow'' \slash  ``I didn't choose block'' (Yes) were not coded as implicature since feedback had been provided giving the subject knowledge of the consequences of their action.
+
+\subsubsection{Instrumentation}
+\label{instrumentation}
+
+In addition to features provided by AMT and Qualtrics, my scripts performed the following:
+
+
+\begin{sloppier}
+\begin{enumerate}
+\item Disable preview using a custom CSS class blocking Qualtrics controls
+\item Check worker hash against a FireBase web service and request worker to return HIT if the hash is in the exclusion list
+\item Add worker hash to FireBase
+\item Submit results to AMT on completion of the Qualtrics survey
+\item Display cookie banner on start page
+\item Record button presses on the cookie banner (accept, block, learn more, close)
+\item In the treatment condition, display feedback on the basis of cookie banner interaction
+\end{enumerate}
+\end{sloppier}
+
+
+\section{Data Collected}
+\label{datacollected}
+
+Using G* Power 3 chi square goodness of fit test  \citep{PowerAnalysisIntro:2012uy},  for both experiments I estimated a sample size of approximately 220 was necessary in order to detect a medium effect with power of 0.95. All surveys initiated were completed: there were no known drop-outs.
+
+Once all assignments had been completed, (as indicated on my AMT requester dashboard), I downloaded data as a single CSV (comma separated values) file from the Qualtrics website. Data was organized such that each participant's data was on its own row.
+
+\section{Results}
+\label{results}
+
+In this section, I present experimental results for both experimental designs.
+
+\subsection{Experiment 1A Results}
+\label{experiment1aresults}
+
+The two tables,  \autoref{text-conditions} and \autoref{mixed-modal-conditions}  , present raw percentages of implicature calculated for the three-factor design with 213 participants. Determination of implicature is dichotomous --- either the participant interprets an implicature or not. Thus, the top two answers for each question were rolled into a single dependent variable (implicature) for which a percentage value is displayed. Within  \autoref{text-conditions}  and  \autoref{mixed-modal-conditions}  are two contexts for interpretation: the participants believes that a cookie will be deposited in the browser or not.
+
+
+\begin{table}
+\caption{Implicature in Text Conditions}
+\label{text-conditions}
+\centering
+\begin{tabular}{ccc}
+ & \multicolumn{2}{c}{Text}\tabularnewline
+\cline{2-3} 
+Cookies & DF & 48\%\tabularnewline
+ & No DF & 50\%\tabularnewline
+\hline 
+Pictures & DF & 67\%\tabularnewline
+ & No DF & 50\%\tabularnewline
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}
+\caption{Implicature in Mixed-Modal Conditions}
+\label{mixed-modal-conditions}
+\centering
+\begin{tabular}{ccc}
+ & \multicolumn{2}{c}{Mixed-Modal}\tabularnewline
+\cline{2-3} 
+Cookies & DF & 63\%\tabularnewline
+ & No DF & 65\%\tabularnewline
+\hline 
+Pictures & DF & 72\%\tabularnewline
+ & No DF & 67\%\tabularnewline
+\end{tabular}
+\end{table}
+
+
+For analysis, a \textbf{basic difference statistics} is required. Because the IV is categorical (binary), a non-parametric statistics is required. A Pearson's chi-square test for independent samples is appropriate. However, its not possible to apply a chi-square test to tables with three or more discrete variables. In such a case, a \textbf{log linear model} is more useful. It has both the characteristics of a chi-square test determining the fit between observed and expected frequencies, as well as features of an ANOVA such that it is possible to do simultaneous testing of main effects and interactions within a fully factorial design.
+
+For hypothesis 1A above, of primary interest are group differences associated with the main effect mixed-modal versus text. But we can also examine the 2-way interaction of privacy and 2-way interaction with deontic force in both textual and mixed-modal conditions.
+
+\begin{sloppier}
+In \autoref{loglinear}, independent and dependent variables are treated equally. It includes main effect plus 2-way and 3-way interactions. Where residuals are close to 0, the model has a better fit. I discarded the 4-way interaction (Graphics:DF:Privacy:Implicature) since it did not improve model fit. 
+\end{sloppier}
+
+\begin{table}
+\caption{Log Linear Significance}
+\centering
+\input{chapter5.tex/loglinear}
+\label{loglinear}
+\end{table}
+
+
+From the table above, \emph{there is a significant difference between text and mixed-modal conditions for implicature where p$<$.01: implicature is higher in conditions where users are presented mixed-modal information.} This validates my hypothesis that implicature may be communicated in mixed-modal conditions, just as it would in a purely textual context. What is, perhaps surprising, and interesting is that subjects are even more likely to interpret an implicature.
+
+There is also a significant difference for implicature where deontic force occurs with pictures (p$<$.05). There is no firm basis for understanding why this may be the case. I speculate that this may be because subjects might ordinarily expect pictures to be displayed and thus might imagine that they were being asked if they wished to block them. For example, some email clients do not load pictures automatically, but explicitly ask users whether they would like to trust loading pictures for a particular sender.
+
+Finally, there are some limitations to this analysis. For linguistic studies such as this, mixed model effects are often desired. A potential issue with my analysis is that it commits what  \citet{Clark:1973vn}  terms the ``language-as-fixed-effect'' fallacy. This means that the results do not generalize beyond the sample studied here. It is easy to understand how important this is in light that simply by changing the words ``accept'' \slash  ``block'' to ``on'' \slash  ``off'' we saw a tangible effect. This may well relate to the nature of deontic force implied by ``accept'' \slash  ``block'', but it could also be to other reasons. For example, it is possible that lexical and semantic features of other pairs such as ``yes'' \slash  ``no'' may may also affect findings.
+
+Increasingly, language researchers are moving to mixed effects models which simply model fixed and random effects in a linear form. Random effects may be added for variables specific to the data sample such as effects relating to subjects, words, and other items. Such an analysis is not substantially more difficult than the one presented here. However, the log linear approach is adequate for the purpose of this pilot study.
+
+\subsection{Experiment 1B Results}
+\label{experiment1bresults}
+
+ \autoref{1B-results}  below presents raw frequency counts for each of the two conditions (see also,  \autoref{1B-fig}). 
+
+
+\begin{table}
+\caption{1B Results}
+\centering
+\input{chapter5.tex/1b-table1}
+\label{1B-results}
+\end{table}
+
+\input{chapter5.tex/1b-results}
+
+
+
+\begin{figure}
+\centerline{
+  \includegraphics[scale=.5]{chapter5.tex/implicature}
+  }
+\caption{Implicature Per Condition}
+\label{1B-fig}
+\end{figure}
+
+
+Of interest is that 30 participants in the control group and 33 in the treatment groups chose to ``accept'' cookies (and only 2 chose to ``block'';  \autoref{1B-clicks}). 
+
+
+\begin{table}
+\caption{Click Actions}
+\centering
+\input{chapter5.tex/1b-table2}
+\label{1B-clicks}
+\end{table}
+
+
+Click results were different than observed in the pre-pilot. Possibly, some workers believed that that must accept cookies in order to participate. Or workers may have believed that the survey wouldn't work properly without accepting cookies. This indicates a potential bias for cooperation. This is also evidenced by one of the subject's comments:
+
+\begin{quote}
+I didn't figure, at first, that the thing about allowing cookies was part of the survey; I figured the survey was based in the UK and was trying to comply with the new UK laws about cookies. (I always allow cookies, because disallowing them creates more problems than allowing them does.)
+\end{quote}
+Several comments were along the lines of this one:
+\begin{quote}
+Wow, this definitely made me question whether I knew anything about cookies and ad tracking or not. The questions seemed super simple, but I realized I was making a lot of vague assumptions when you asked more specific questions.
+\end{quote}
+
+It is also useful to consider whether an implicature might result in harm. By harm, I mean whether the user infers there are no ad cookies. Non-harmful inference would occur in a situation where a participant believed there were ad cookies and also answered ``I chose allow'' or ``I didn't choose block'' yet took no action on the cookie banner --- inferring passive consent through inaction. On the other hand, an inference that is potentially harmful falls under the situation where the participant did not believe there were ad tracking cookies and responded, ``I didn't choose allow'' or ``I chose block'' yet took no action on the cookie banner --- inferring non-consent through inaction.
+
+Under this interpretation of harm, approximately 10\% of those in the control group made harmful inferences while only 4\% in the treatment group. These 4\% made an incorrect inference ``I didn't choose allow'' despite very visible feedback to the contrary.
